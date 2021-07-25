@@ -1,0 +1,2 @@
+GET http://localhost:8080/domains/my.go
+Accept: application/json
