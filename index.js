@@ -22,7 +22,6 @@ app.get('/', async (req, res) => {
         })
     })
     request(`${MAIN_PAGE_URL}/domains/${domain}`, (err, rs, body) => {
-        console.log(err, body)
         if (err) {
             res.status(400).send('Bad Request')
         }
