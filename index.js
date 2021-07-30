@@ -1,5 +1,4 @@
 require('dotenv').config()
-const qs = require('querystring')
 const express = require('express')
 const request = require('request')
 const app = express()
@@ -10,7 +9,7 @@ const MAIN_PAGE_URL = process.env.MAIN_PAGE_URL;
 app.get('/', async (req, res) => {
     //check 
     const domain = req.hostname;
-    await Promise(res => {
+    await new Promise((res) => {
         request.get(`${MAIN_PAGE_URL}/api/domains/analytics`, {
             qs: {
                 domain,
