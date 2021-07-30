@@ -1,4 +1,5 @@
 require('dotenv').config()
+const qs = require('querystring')
 const express = require('express')
 const request = require('request')
 const app = express()
@@ -6,10 +7,21 @@ const port = process.env.PORT
 const API_TOKEN = process.env.API_TOKEN
 const MAIN_PAGE_URL = process.env.MAIN_PAGE_URL;
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     //check 
     const domain = req.hostname;
-    console.log({ domain })
+    await Promise(res => {
+        request.get(`${MAIN_PAGE_URL}/api/domains/analytics`, {
+            qs: {
+                domain,
+                ip: req.ip,
+                type: 'VIEW',
+                agent: req.get('User-Agent')
+            }
+        }, function () {
+            res()
+        })
+    })
     request(`${MAIN_PAGE_URL}/domains/${domain}`, (err, rs, body) => {
         console.log(err, body)
         if (err) {
