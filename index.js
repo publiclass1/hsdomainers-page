@@ -21,7 +21,7 @@ app.get('/', async (req, res) => {
             res()
         })
     })
-    request(`${MAIN_PAGE_URL}/domains/${domain}`, (err, rs, body) => {
+    request(`${MAIN_PAGE_URL}/buy-domains/${domain}`, (err, rs, body) => {
         if (err) {
             res.status(400).send('Bad Request')
         }
