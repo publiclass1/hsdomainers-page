@@ -10,7 +10,7 @@ app.get('/', async (req, res) => {
     //check 
     const domain = req.hostname;
     await new Promise((res) => {
-        request.get(`${MAIN_PAGE_URL}/api/domains/analytics`, {
+        request.get(`${MAIN_PAGE_URL}/domains/analytics`, {
             qs: {
                 domain,
                 ip: req.ip,
